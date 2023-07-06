@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const path = require("path");
+const {fileURLToPath} = require('url');
 
 const errorMiddleware = require("./middleware/error");
 
@@ -27,6 +28,9 @@ app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
+const __filename=fileURLToPath(import.meta.url);
+
+const __dirname= path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
